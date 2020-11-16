@@ -480,6 +480,7 @@ public class SqlSessionFactoryBean
 
   /**
    * {@inheritDoc}
+   * 实例化 SqlSessionFactoryBean 之后执行方法
    */
   @Override
   public void afterPropertiesSet() throws Exception {
@@ -487,7 +488,7 @@ public class SqlSessionFactoryBean
     notNull(sqlSessionFactoryBuilder, "Property 'sqlSessionFactoryBuilder' is required");
     state((configuration == null && configLocation == null) || !(configuration != null && configLocation != null),
         "Property 'configuration' and 'configLocation' can not specified with together");
-
+    // 创建SqlSessionFactory
     this.sqlSessionFactory = buildSqlSessionFactory();
   }
 
@@ -620,7 +621,7 @@ public class SqlSessionFactoryBean
     } else {
       LOGGER.debug(() -> "Property 'mapperLocations' was not specified.");
     }
-
+    // 创建sqlSessionFactory对象
     return this.sqlSessionFactoryBuilder.build(targetConfiguration);
   }
 
